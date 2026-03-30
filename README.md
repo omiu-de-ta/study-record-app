@@ -43,5 +43,5 @@ IDで管理する設計に変更することで解決しました。
 - UI/UXの改善
 - Firebaseなどを用いたデータ共有機能
 
-## デモ
+## アプリURL
  https://omiu-de-ta.github.io/study-record-app/
