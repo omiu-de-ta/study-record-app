@@ -1,5 +1,6 @@
 //script.js
 let records = [];//データを保存するようの変数
+let editingId = null;
 
 //データを読み込む(localStorageで)
 const saved = localStorage.getItem("records");
@@ -11,38 +12,61 @@ const button = document.getElementById("add");
 const input = document.getElementById("text");
 const list = document.getElementById("list");
 
-// 表示する関数
+//表示させる関数
 function render() {
-  list.innerHTML = ""; 
+  list.innerHTML = "";
 
   records.forEach((item) => {
     const li = document.createElement("li");
-    li.textContent = item.text;
 
-    //クリックで削除する
-    li.addEventListener("click", () => {
-      records=records.filter(r => r.id !== item.id); 
-      localStorage.setItem("records", JSON.stringify(records));// 配列を文字列に変換してlocalStorageに保存
-      render(); // データ変更後に画面を更新するため再描画
+    // テキスト表示
+    const span = document.createElement("span");
+    span.textContent = item.text;
+
+    // 編集（クリック）
+    span.addEventListener("click", () => {
+      input.value = item.text;
+      editingId = item.id;
     });
 
+    // 削除ボタン
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "削除";
+
+    deleteBtn.addEventListener("click", () => {
+      records = records.filter(r => r.id !== item.id);
+      localStorage.setItem("records", JSON.stringify(records));
+      render();
+    });
+
+    li.appendChild(span);
+    li.appendChild(deleteBtn);
     list.appendChild(li);
   });
 }
 
-// 追加ボタン処理
+//追加ボタン処理
 button.addEventListener("click", () => {
   const value = input.value;
-  if(value==="")return;//空入力防止
-  const newItem = {
-    id: Date.now(), //IDを生成して削除時に識別できるようにする
-    text: value
-  };
+  if (value === "") return;//空入力防止
 
-  records.push(newItem);
-  localStorage.setItem("records", JSON.stringify(records));//保存
+  if (editingId !== null) {
+    // 編集モード
+    records = records.map(r =>
+      r.id === editingId ? { ...r, text: value } : r
+    );
+    editingId = null;
+  } else {
+    // 新規追加
+    const newItem = {
+      id: Date.now(),//IDを生成して削除時に識別できるようにする
+      text: value
+    };
+    records.push(newItem);
+  }
 
-  input.value = ""; 
+  localStorage.setItem("records", JSON.stringify(records));
+  input.value = "";
   render();
 });
 render();
