@@ -44,4 +44,4 @@ IDで管理する設計に変更することで解決しました。
 - Firebaseなどを用いたデータ共有機能
 
 ## デモ
-https://ユーザー名.github.io/study-record-app/
+ https://omiu-de-ta.github.io/study-record-app/
