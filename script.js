@@ -1,6 +1,7 @@
 //script.js
 let records = [];//データを保存するようの変数
 let editingId = null;
+const date = new Date().toLocaleDateString();
 
 //データを読み込む(localStorageで)
 const saved = localStorage.getItem("records");
@@ -21,7 +22,8 @@ function render() {
 
     // テキスト表示
     const span = document.createElement("span");
-    span.textContent = item.text;
+    //span.textContent = item.text;
+    span.textContent = item.date + " " + item.text;
 
     // 編集（クリック）
     span.addEventListener("click", () => {
@@ -60,7 +62,8 @@ button.addEventListener("click", () => {
     // 新規追加
     const newItem = {
       id: Date.now(),//IDを生成して削除時に識別できるようにする
-      text: value
+      text: value,
+      date: date
     };
     records.push(newItem);
   }
