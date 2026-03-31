@@ -1,7 +1,14 @@
 # 学習記録アプリ
 
+## アプリURL
+ https://omiu-de-ta.github.io/study-record-app/
+ 
+## アプリ画面
+<img width="1913" height="941" alt="image" src="https://github.com/user-attachments/assets/53e48a92-1b86-478d-b10d-20f8b24946ff" />
+
 ## 概要
-日々の学習内容を記録・管理するシンプルなWebアプリです。
+学習内容をシンプルに記録・管理できるWebアプリです。  
+「記録が面倒で続かない」という課題を解決するため、最小限の操作で使える設計にしました。
 
 ## 作成した背景
 日々の学習の中で、記録を残すことで復習しやすくなり、自分の成長を客観的に振り返ることができると感じました。  
@@ -10,13 +17,15 @@
 
 ## 機能
 - 学習内容の追加
-- 一覧表示
-- 削除
-- 編集
-- localStorageによるデータ保存（リロード後も保持）## 使用技術
+- 学習内容の表示
+- 学習内容の削除
+- 学習内容の編集
+- localStorageによるデータ保存（リロード後も保持）
+- 
+## 使用技術
 - HTML
 - CSS
-- JavaScript（Vanilla）
+- JavaScript（Vanilla　JS）
 - localStorage
 
 ## 工夫した点
@@ -25,7 +34,9 @@
 - render関数でUI更新を一元化し、状態と表示を分離
 - filterを用いた配列操作でシンプルな削除処理を実装
 - 空入力を防ぐバリデーションを追加
-- localStorageを用いてデータの永続化を実装
+- localStorageを使い、ページをリロードしてもデータが消えないようにした
+- 編集機能を実装し、実用性を向上
+- CSSを分離し、保守性を意識した構成にした
   
 
 ## 苦労した点
@@ -44,5 +55,6 @@ IDで管理する設計に変更することで解決しました。
 - UI/UXの改善
 - Firebaseなどを用いたデータ共有機能
 
-## アプリURL
- https://omiu-de-ta.github.io/study-record-app/
+##作者
+- GitHub: https://github.com/omiu-de-ta
+
