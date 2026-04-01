@@ -4,7 +4,8 @@
  https://omiu-de-ta.github.io/study-record-app/
  
 ## アプリ画面
-<img width="1913" height="941" alt="image" src="https://github.com/user-attachments/assets/53e48a92-1b86-478d-b10d-20f8b24946ff" />
+<img width="1730" height="731" alt="image" src="https://github.com/user-attachments/assets/9a45e421-4354-4ca3-b036-c74384b690d1" />
+
 
 ## 概要
 学習内容をシンプルに記録・管理できるWebアプリです。  
