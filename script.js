@@ -19,14 +19,19 @@ function render() {
   records.forEach((item) => {
     const li = document.createElement("li");
 
+    if (editingId === item.id) {
+      li.style.border = "2px solid #4f8cff";
+    }//選択すると青色の部分になるのはこのコード
+
     // テキスト表示
     const span = document.createElement("span");
-    span.textContent = item.date + " " + item.text;
+    span.textContent = item.text + "（" + item.createdAt + "）";
 
     // 編集（クリック）
     span.addEventListener("click", () => {
       input.value = item.text;
       editingId = item.id;
+      render();
     });
 
     // 削除ボタン
@@ -35,7 +40,7 @@ function render() {
 
     deleteBtn.addEventListener("click", () => {
       records = records.filter(r => r.id !== item.id);
-      localStorage.setItem("records", JSON.stringify(records));
+      save()
       render();
     });
 
@@ -48,7 +53,7 @@ function render() {
 //追加ボタン処理
 button.addEventListener("click", () => {
   const value = input.value;
-  if (value === "") return;//空入力防止
+  if (value.trim() === "") return;//空入力防止
 
   const date = new Date().toLocaleDateString('ja-JP');
 
@@ -63,14 +68,18 @@ button.addEventListener("click", () => {
     const newItem = {
       id: Date.now(),//IDを生成して削除時に識別できるようにする
       text: value,
-      date: date
+      createdAt: date
     };
     records.push(newItem);
   }
 
-  localStorage.setItem("records", JSON.stringify(records));
   input.value = "";
+  save()
   render();
 });
+
+function save() {
+  localStorage.setItem("records", JSON.stringify(records));
+}
 render();
 
